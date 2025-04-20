@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Qazaq Wear Маркеті</title>
+  <style>
+    :root {
+      --main-color: #a66a27;
+      --accent: #f5d47b;
+      --bg: #fffbea;
+      --text: #3b270a;
+      --card-bg: #fff;
+      --shadow: 0 2px 12px rgba(166,106,39,0.08);
+      --ornament: linear-gradient(90deg, #f5d47b 0%, #a66a27 100%);
+    }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+    header {
+      background: var(--main-color);
+      color: #fff;
+      padding: 0.5em 0 0.2em 0;
+      box-shadow: 0 2px 8px rgba(166,106,39,0.08);
+      position: relative;
+    }
+    .container {
+      width: 95%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-weight: 900;
+      letter-spacing: 1px;
+      font-size: 1.7rem;
+      font-family: 'Georgia', serif;
+      text-shadow: 1px 1px 4px #0003;
+      display: flex;
+      align-items: center;
+      gap: 0.3em;
+    }
+    .logo-ornament {
+      font-size: 1.4em;
+      margin-right: 0.2em;
+    }
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 1.5em;
+    }
+    nav a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    nav a:hover {
+      color: var(--accent);
+    }
+    .ornament-bar {
+      width: 100%;
+      height: 14px;
+      background: var(--ornament);
+      background-size: 60px 14px;
+      margin-bottom: 0.5em;
+      position: relative;
+      z-index: 2;
+      border-radius: 0 0 18px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .ornament-pattern {
+      font-size: 1.15em;
+      letter-spacing: 0.3em;
+      color: #8b5b1b;
+      font-family: 'Georgia', serif;
+      user-select: none;
+      opacity: 0.7;
+    }
+    .banner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(105deg, #f5d47b 65%, #a66a2733 100%);
+      padding: 2.5em 1em 2em 1em;
+      border-radius: 0 0 30px 30px;
+      margin-bottom: 2em;
+      box-shadow: 0 6px 24px rgba(166,106,39,0.08);
+      text-align: center;
+      position: relative;
+    }
+    .banner h1 {
+      margin: 0 0 0.3em 0;
+      font-size: 2.1em;
+      color: #a66a27;
+      font-family: 'Georgia', serif;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-shadow: 1px 1px 8px #fff5;
+    }
+    .banner p {
+      color: #7a4f0e;
+      font-size: 1.08em;
+      margin-bottom: 1.2em;
+      max-width: 500px;
+      text-shadow: 1px 1px 8px #fff7;
+    }
+    .banner button {
+      background: var(--main-color);
+      color: #fff;
+      border: none;
+      padding: 0.8em 2em;
+      border-radius: 30px;
+      font-size: 1.1em;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+      box-shadow: 0 2px 8px #0001;
+    }
+    .banner button:hover {
+      background: #8b5b1b;
+    }
+    .products-section {
+      margin: 2em 0;
+    }
+    .products-section h2 {
+      text-align: center;
+      font-size: 2em;
+      margin-bottom: 1.5em;
+      letter-spacing: 1px;
+      color: var(--main-color);
+      font-family: 'Georgia', serif;
+    }
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.5em;
+      margin-bottom: 2em;
+    }
+    .product-card {
+      background: var(--card-bg);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      padding: 1em 1em 1.5em 1em;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.12s;
+      position: relative;
+      border: 2px solid #f5d47b55;
+    }
+    .product-card:hover {
+      transform: translateY(-4px) scale(1.025);
+      box-shadow: 0 6px 30px #a66a2715;
+      border-color: #a66a27bb;
+    }
+    .product-image {
+      width: 100%;
+      height: 170px;
+      background: linear-gradient(135deg, #fffbe9 60%, #f5d47b 100%);
+      border-radius: 12px;
+      margin-bottom: 1em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.8em;
+      color: #a66a27;
+      position: relative;
+      border: 1.2px solid #f5d47b;
+      overflow: hidden;
+      cursor: zoom-in;
+      transition: box-shadow 0.2s;
+    }
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+      display: block;
+    }
+    .product-image:hover {
+      box-shadow: 0 2px 16px #a66a2722;
+    }
+    .product-title {
+      font-size: 1.13em;
+      font-weight: 700;
+      margin-bottom: 0.6em;
+      font-family: 'Georgia', serif;
+      color: #a66a27;
+    }
+    .product-desc {
+      font-size: 1em;
+      color: #6e4c18;
+      margin-bottom: 1em;
+      min-height: 2.2em;
+    }
+    .product-price {
+      font-size: 1.15em;
+      font-weight: 700;
+      color: #b8860b;
+      margin-bottom: 1em;
+    }
+    .product-card button {
+      background: var(--main-color);
+      color: #fff;
+      border: none;
+      border-radius: 20px;
+      font-size: 1em;
+      font-weight: 600;
+      padding: 0.6em 1.5em;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-top: auto;
+    }
+    .product-card button:hover {
+      background: #7a4f0e;
+    }
+    /* Модальное окно */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 99;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: auto;
+      background: rgba(45,30,10,0.85);
+      justify-content: center;
+      align-items: center;
+    }
+    .modal.active {
+      display: flex;
+      animation: fadeIn 0.2s;
+    }
+    .modal-content {
+      position: relative;
+      background: transparent;
+      border-radius: 18px;
+      max-width: 90vw;
+      max-height: 90vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 8px 40px #0005;
+    }
+    .modal-img {
+      max-width: 90vw;
+      max-height: 80vh;
+      border-radius: 15px;
+      box-shadow: 0 2px 32px #0006;
+      border: 6px solid #fff;
+      background: #fff;
+      display: block;
+    }
+    .modal-close {
+      position: absolute;
+      top: 12px;
+      right: 18px;
+      background: rgba(255,255,255,0.9);
+      border: none;
+      border-radius: 50%;
+      width: 38px;
+      height: 38px;
+      font-size: 2em;
+      color: #a66a27;
+      cursor: pointer;
+      box-shadow: 0 2px 12px #0002;
+      transition: background 0.15s;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-close:hover {
+      background: #ffeec0;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0;}
+      to { opacity: 1;}
+    }
+    footer {
+      background: var(--main-color);
+      color: #fff;
+      text-align: center;
+      padding: 1.2em 0 1em 0;
+      border-radius: 20px 20px 0 0;
+      font-size: 1em;
+      box-shadow: 0 -2px 12px #a66a2710;
+      margin-top: 3em;
+    }
+    /* Адаптив */
+    @media (max-width: 700px) {
+      .banner h1 {font-size: 1.3em;}
+      .products-section h2 {font-size: 1em;}
+      .product-image {height: 100px; font-size: 1.5em;}
+      .container {width: 99%;}
+      nav ul {gap: 0.7em;}
+      .modal-img {max-height: 55vh;}
+    }
+    @media (max-width: 500px) {
+      .banner {padding: 1.2em 0.3em 0.9em 0.3em;}
+      .product-card {padding: 0.8em;}
+      footer {font-size: 0.9em;}
+      .modal-img {max-width: 98vw;}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="logo">
+        <span class="logo-ornament">🟡</span>
+        Qazaq Wear
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#">Басты бет</a></li>
+          <li><a href="#">Каталог</a></li>
+          <li><a href="#">Біз туралы</a></li>
+          <li><a href="#">Байланыс</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="ornament-bar">
+      <div class="ornament-pattern">✦✷❂✷✦</div>
+    </div>
+  </header>
+
+  <section class="banner">
+    <h1>Дәстүрлі қазақ киімдері</h1>
+    <p>Ұлттық мәдениетке еніп, өзіңізге лайықты түпнұсқа киімдерді таңдаңыз: <br>
+    <b>шапан</b>, <b>камзол</b>, <b>тақия</b>, <b>сәукеле</b> және тағы басқа!</p>
+    <button>Каталогты көру</button>
+  </section>
+
+  <main class="container">
+    <section class="products-section">
+      <h2>Танымал тауарлар</h2>
+      <div class="products-grid">
+        <div class="product-card">
+          <div class="product-image" data-full="https://cdn.goodhouse.com.ua/images-jpg/6866/686647_big.jpg">
+            <img src="https://cdn.goodhouse.com.ua/images-jpg/6866/686647_big.jpg" alt="Ұлттық шапан">
+          </div>
+          <div class="product-title">Ұлттық шапан</div>
+          <div class="product-desc">Кестелі, алтын өрнекті мерекелік ерлер шапаны.</div>
+          <div class="product-price">18 900 ₸</div>
+          <button>Себетке қосу</button>
+        </div>
+        <div class="product-card">
+          <div class="product-image" data-full="https://kz.all.biz/img/kz/catalog/3024296.jpeg">
+            <img src="https://kz.all.biz/img/kz/catalog/3024296.jpeg" alt="Әйелдер камзолы">
+          </div>
+          <div class="product-title">Әйелдер камзолы</div>
+          <div class="product-desc">Ұлттық нақыштағы сәнді камзол — мерекелер мен шараларға арналған.</div>
+          <div class="product-price">12 500 ₸</div>
+          <button>Себетке қосу</button>
+        </div>
+        <div class="product-card">
+          <div class="product-image" data-full="https://i.ytimg.com/vi/cTqSRp2VVgM/maxresdefault.jpg">
+            <img src="https://i.ytimg.com/vi/cTqSRp2VVgM/maxresdefault.jpg" alt="Тақия">
+          </div>
+          <div class="product-title">Тақия</div>
+          <div class="product-desc">Қазақтың дәстүрлі ерлер бас киімі — ұлттық стильдің жарқын белгісі.</div>
+          <div class="product-price">3 200 ₸</div>
+          <button>Себетке қосу</button>
+        </div>
+        <div class="product-card">
+          <div class="product-image" data-full="https://img.razrisyika.ru/kart/130/1200/516493-sukele-dlya-detey-2.jpg">
+            <img src="https://img.razrisyika.ru/kart/130/1200/516493-sukele-dlya-detey-2.jpg" alt="Сәукеле">
+          </div>
+          <div class="product-title">Сәукеле</div>
+          <div class="product-desc">Қалыңдықтың мерекелік бас киімі — дәстүр мен сұлулықтың символы.</div>
+          <div class="product-price">22 700 ₸</div>
+          <button>Себетке қосу</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Фотоны толық көру үшін модал -->
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <button class="modal-close" id="modal-close" title="Жабу">&times;</button>
+      <img class="modal-img" id="modal-img" src="" alt="Тауар фотосы">
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 Qazaq Wear — Дәстүрлі қазақ киімдері
+  </footer>
+  <script>
+    // Фотоға басқанда толық ашылу
+    document.querySelectorAll('.product-image').forEach(function(imgBlock){
+      imgBlock.addEventListener('click', function(){
+        var img = imgBlock.querySelector('img');
+        var fullSrc = imgBlock.getAttribute('data-full') || img.src;
+        var modal = document.getElementById('modal');
+        var modalImg = document.getElementById('modal-img');
+        modalImg.src = fullSrc;
+        modal.style.display = 'flex';
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    // Модалды жабу
+    function closeModal() {
+      var modal = document.getElementById('modal');
+      modal.classList.remove('active');
+      setTimeout(function(){
+        modal.style.display = 'none';
+        document.getElementById('modal-img').src = '';
+        document.body.style.overflow = '';
+      }, 180);
+    }
+    document.getElementById('modal-close').onclick = closeModal;
+
+    // Фонға басқанда жабу
+    document.getElementById('modal').addEventListener('click', function(e){
+      if (e.target === this) closeModal();
+    });
+
+    // ESC пернесімен жабу
+    document.addEventListener('keydown', function(e){
+      if (e.key === "Escape") closeModal();
+    });
+  </script>
+</body>
+</html>
