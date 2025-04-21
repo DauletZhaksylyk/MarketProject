@@ -1,0 +1,152 @@
+﻿<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <title>Каталог — Qazaq Wear</title>
+    <style>
+        body {
+            font-family: Arial;
+            margin: 0;
+            padding: 0;
+            background: url('https://tengrinews.kz/userdata/images/u40/ef7de82a15495135f5a0f6f31c4c4597.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+        }
+
+        .container {
+            width: 85%; /* Контейнердің ені */
+            margin: 0 auto;
+            padding: 2em 0;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.8); /* Ашық фон */
+            border-radius: 10px;
+        }
+
+        h1 {
+            color: #a66a27;
+            font-size: 2.5em; /* Бас тақырыптың өлшемін ұлғайттық */
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Тауарлардың ені */
+            gap: 30px; /* Тауарлар арасындағы қашықтық */
+            margin-top: 2em;
+            justify-items: center; /* Орталықта орналастыру */
+        }
+
+        .product-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+            text-align: left;
+        }
+
+            .product-card:hover {
+                transform: translateY(-5px);
+            }
+
+        .product-image img {
+            width: 100%;
+            border-radius: 10px;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .product-title {
+            font-weight: bold;
+            font-size: 1.3em;
+            margin-top: 10px;
+        }
+
+        .product-price {
+            color: #ff4e50;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-top: 10px;
+        }
+
+        button {
+            background-color: #ff4e50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            margin-top: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+            button:hover {
+                background-color: #e04030;
+            }
+
+        a {
+            text-decoration: none;
+            color: #a66a27;
+            display: block;
+            margin-bottom: 1em;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html">← Басты бетке қайту</a>
+        <h1>Барлық тауарлар</h1>
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://cdn.goodhouse.com.ua/images-jpg/6866/686647_big.jpg" alt="Ұлттық шапан">
+                </div>
+                <div class="product-title">Ұлттық шапан</div>
+                <div class="product-desc">Кестелі, алтын өрнекті мерекелік ерлер шапаны.</div>
+                <div class="product-price">18 900 ₸</div>
+                <button onclick="addToCart('Ұлттық шапан', 18900, 'https://cdn.goodhouse.com.ua/images-jpg/6866/686647_big.jpg')">Себетке қосу</button>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://kz.all.biz/img/kz/catalog/3024296.jpeg" alt="Әйелдер камзолы">
+                </div>
+                <div class="product-title">Әйелдер камзолы</div>
+                <div class="product-desc">Ұлттық нақыштағы сәнді камзол — мерекелер мен шараларға арналған.</div>
+                <div class="product-price">12 500 ₸</div>
+                <button onclick="addToCart('Әйелдер камзолы', 12500, 'https://kz.all.biz/img/kz/catalog/3024296.jpeg')">Себетке қосу</button>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://i.ytimg.com/vi/cTqSRp2VVgM/maxresdefault.jpg" alt="Тақия">
+                </div>
+                <div class="product-title">Тақия</div>
+                <div class="product-desc">Қазақтың дәстүрлі ерлер бас киімі — ұлттық стильдің жарқын белгісі.</div>
+                <div class="product-price">3 200 ₸</div>
+                <button onclick="addToCart('Тақия', 3200, 'https://i.ytimg.com/vi/cTqSRp2VVgM/maxresdefault.jpg')">Себетке қосу</button>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://img.razrisyika.ru/kart/130/1200/516493-sukele-dlya-detey-2.jpg" alt="Сәукеле">
+                </div>
+                <div class="product-title">Сәукеле</div>
+                <div class="product-desc">Қалыңдықтың мерекелік бас киімі — дәстүр мен сұлулықтың символы.</div>
+                <div class="product-price">22 700 ₸</div>
+                <button onclick="addToCart('Сәукеле', 22700, 'https://img.razrisyika.ru/kart/130/1200/516493-sukele-dlya-detey-2.jpg')">Себетке қосу</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        function addToCart(title, price, imgSrc) {
+            cart.push({ title, price, imgSrc });
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert(`"${title}" себетке қосылды!`);
+        }
+    </script>
+</body>
+</html>

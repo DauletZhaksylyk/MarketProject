@@ -1,0 +1,133 @@
+﻿<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <title>Себет — Qazaq Wear</title>
+    <style>
+        body {
+            font-family: Arial;
+            padding: 2em;
+            background: #f8f8f8;
+        }
+
+        h1 {
+            color: #a66a27;
+        }
+
+        .cart-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #fff;
+            padding: 1em;
+            margin-bottom: 1em;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+            .cart-item img {
+                width: 80px;
+                height: 80px;
+                border-radius: 5px;
+                object-fit: cover;
+            }
+
+        .cart-item-info {
+            flex-grow: 1;
+            margin-left: 1em;
+        }
+
+        .cart-item-title {
+            font-weight: bold;
+        }
+
+        .cart-item-price {
+            color: #ff4e50;
+        }
+
+        .cart-total {
+            font-size: 1.3em;
+            font-weight: bold;
+            text-align: right;
+            margin-top: 1em;
+        }
+
+        .checkout-button {
+            background-color: #a66a27;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 1em;
+            cursor: pointer;
+            display: block;
+            margin: 2em auto 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: #ff4e50;
+            display: block;
+            margin-bottom: 1em;
+        }
+    </style>
+</head>
+<body>
+    <div class="cart-container">
+        <a href="index.html">← Басты бетке қайту</a>
+        <h1>Себет</h1>
+        <div id="cart-items"></div>
+        <div class="cart-total" id="cart-total"></div>
+        <button class="checkout-button">Төлем жасау</button>
+    </div>
+
+    <script>
+        // Получение данных из localStorage
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        function renderCart() {
+            const itemsContainer = document.getElementById('cart-items');
+            const totalContainer = document.getElementById('cart-total');
+            itemsContainer.innerHTML = '';
+
+            if (cart.length === 0) {
+                itemsContainer.innerHTML = "<p>Себет бос.</p>";
+                totalContainer.textContent = '';
+                return;
+            }
+
+            let total = 0;
+
+            cart.forEach(item => {
+                total += item.price;
+
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'cart-item';
+                itemDiv.innerHTML = `
+                    <img src="${item.imgSrc}" alt="${item.title}">
+                    <div class="cart-item-info">
+                        <div class="cart-item-title">${item.title}</div>
+                        <div class="cart-item-price">${item.price} ₸</div>
+                    </div>
+                    <button onclick="removeFromCart('${item.title}')">Жою</button>
+                `;
+                itemsContainer.appendChild(itemDiv);
+            });
+
+            totalContainer.textContent = `Жалпы: ${total} ₸`;
+        }
+
+        function removeFromCart(title) {
+            cart = cart.filter(item => item.title !== title);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            renderCart();
+        }
+
+        renderCart();
+    </script>
+</body>
+</html>
